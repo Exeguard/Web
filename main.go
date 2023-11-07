@@ -9,6 +9,7 @@ import (
 	"text/template"
 )
 
+const HOT_RELOAD_TEMPLATES = true
 var tmpl *template.Template
 
 func main() {
@@ -38,6 +39,15 @@ func main() {
 }
 
 func handle_request(w http.ResponseWriter, r *http.Request) {
+  if HOT_RELOAD_TEMPLATES {
+    var err error;
+    tmpl, err = template.ParseGlob("templates/*");
+
+    if err != nil {
+      log.Fatal(err);
+    }
+  }
+
   resource := "index.html"
 
   if r.URL.Path != "/" {
