@@ -25,7 +25,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Printf("Hosting at %s", listen)
+	log.Printf("Hosting at %s\n", listen)
 
 	http.Handle(
 		"/static/",
@@ -56,7 +56,7 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 		resource = fmt.Sprintf("%s.html", path.Base(r.URL.Path))
 	}
 
-	log.Printf("Web request for %s", resource)
+	log.Printf("Web request for %s\n", resource)
 
 	var header bytes.Buffer
 	tmpl.ExecuteTemplate(&header, "header.html", nil)
@@ -73,6 +73,6 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 
 	if err := tmpl.ExecuteTemplate(w, resource, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		fmt.Printf("Error: %s", err)
+		fmt.Printf("Error: %s\n", err)
 	}
 }
