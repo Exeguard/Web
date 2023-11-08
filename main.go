@@ -10,7 +10,7 @@ import (
 	"text/template"
 )
 
-const HOT_RELOAD_TEMPLATES = true
+const PRODUCTION_BUILD = true
 
 var tmpl *template.Template
 
@@ -41,7 +41,7 @@ func main() {
 }
 
 func handle_request(w http.ResponseWriter, r *http.Request) {
-	if HOT_RELOAD_TEMPLATES {
+	if PRODUCTION_BUILD {
 		var err error
 		tmpl, err = template.ParseGlob("templates/*")
 
