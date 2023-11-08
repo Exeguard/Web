@@ -16,13 +16,13 @@ h1 {
   animation: slide-in 1s ease-in-out;
 }
 
-.exeguard-cards {
+.slide-1 {
   max-width: 64rem;
   margin: 0 auto;
   animation: slide-in 1.25s ease-in-out;
 }
 
-.description {
+.slide-2 {
   max-width: 64rem;
   margin: 0 auto;
   animation: slide-in 1.5s ease-in-out;
