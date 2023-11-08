@@ -58,13 +58,17 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf("Web request for %s", resource)
 
-	var buf bytes.Buffer
-	tmpl.ExecuteTemplate(&buf, "header.html", nil)
+	var header bytes.Buffer
+	tmpl.ExecuteTemplate(&header, "header.html", nil)
+	var head bytes.Buffer
+	tmpl.ExecuteTemplate(&head, "head.html", nil)
 
 	data := struct {
 		Header string
+		Head   string
 	}{
-		Header: buf.String(),
+		Header: header.String(),
+		Head:   head.String(),
 	}
 
 	if err := tmpl.ExecuteTemplate(w, resource, data); err != nil {
