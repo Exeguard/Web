@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"log"
@@ -57,7 +58,16 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf("Web request for %s", resource)
 
-	if err := tmpl.ExecuteTemplate(w, resource, nil); err != nil {
+	var buf bytes.Buffer
+	tmpl.ExecuteTemplate(&buf, "header.html", nil)
+
+	data := struct {
+		Header string
+	}{
+		Header: buf.String(),
+	}
+
+	if err := tmpl.ExecuteTemplate(w, resource, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		fmt.Printf("Error: %s", err)
 	}
