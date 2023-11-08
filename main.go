@@ -64,15 +64,21 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(&head, "head.html", nil)
 
 	data := struct {
-		Navbar string
-		Head   string
-	}{
-		Navbar: header.String(),
-		Head:   head.String(),
+	  Navbar string
+	  Head   string
+    Error  string
+	} {
+	  Navbar: header.String(),
+	  Head:   head.String(),
+    Error:  "None",
 	}
 
 	if err := tmpl.ExecuteTemplate(w, resource, data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		// http.Error(w, err.Error(), http.StatusInternalServerError)
+    data.Error = err.Error();
+
+    tmpl.ExecuteTemplate(w, "error.html", data);
+
 		fmt.Printf("Error: %s\n", err)
 	}
 }
