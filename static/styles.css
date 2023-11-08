@@ -5,8 +5,9 @@
 
 @keyframes slide-in {
   from {
-    transform: translateX(-100%);
+    transform: translateX(-200%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -19,11 +20,15 @@ h1 {
 .slide-1 {
   max-width: 64rem;
   margin: 0 auto;
-  animation: slide-in 1.25s ease-in-out;
+  animation: slide-in 1s ease-in-out forwards;
+  animation-delay: 0.1s;
+  transform: translateX(-200%);
 }
 
 .slide-2 {
   max-width: 64rem;
   margin: 0 auto;
-  animation: slide-in 1.5s ease-in-out;
+  animation: slide-in 1s ease-in-out forwards;
+  animation-delay: 0.2s;
+  transform: translateX(-200%);
 }
