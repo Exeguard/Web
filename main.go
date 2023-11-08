@@ -59,15 +59,15 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Web request for %s\n", resource)
 
 	var header bytes.Buffer
-	tmpl.ExecuteTemplate(&header, "header.html", nil)
+	tmpl.ExecuteTemplate(&header, "navbar.html", nil)
 	var head bytes.Buffer
 	tmpl.ExecuteTemplate(&head, "head.html", nil)
 
 	data := struct {
-		Header string
+		Navbar string
 		Head   string
 	}{
-		Header: header.String(),
+		Navbar: header.String(),
 		Head:   head.String(),
 	}
 
