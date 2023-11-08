@@ -60,15 +60,21 @@ func handle_request(w http.ResponseWriter, r *http.Request) {
 
 	var header bytes.Buffer
 	tmpl.ExecuteTemplate(&header, "navbar.html", nil)
+
+	var footer bytes.Buffer
+	tmpl.ExecuteTemplate(&footer, "footer.html", nil)
+
 	var head bytes.Buffer
 	tmpl.ExecuteTemplate(&head, "head.html", nil)
 
 	data := struct {
 	  Navbar string
+    Footer string
 	  Head   string
     Error  string
 	} {
 	  Navbar: header.String(),
+	  Footer: footer.String(),
 	  Head:   head.String(),
     Error:  "None",
 	}
