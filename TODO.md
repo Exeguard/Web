@@ -1,4 +1,6 @@
 # TODO
 - [x] Basic templating web server
-- [ ] Implement animations on page
-- [ ] Move header into template
+- [x] Implement animations on page
+- [x] Move header into template
+- [ ] Add features table
+- [ ] Add custom theme
