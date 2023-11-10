@@ -13,7 +13,7 @@ import (
 	"text/template"
 )
 
-const PRODUCTION_BUILD = true
+const PRODUCTION_BUILD = false
 
 var utilTmpl *template.Template
 var tmpl *template.Template
@@ -66,6 +66,10 @@ func main() {
 			http.FileServer(http.Dir("static")),
 		),
 	)
+
+  http.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "static/text/robots.txt")
+  })
 
 	http.HandleFunc("/", handle_request)
 
